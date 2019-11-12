@@ -15,6 +15,7 @@ type MailNotify struct {
 	Password string `json:"password"`
 	Host     string `json:"smtpHost"`
 	Port     int    `json:"port"`
+	Subject  string `json:"subject"`
 	From     string `json:"from"`
 	To       string `json:"to"`
 }
@@ -73,6 +74,8 @@ func (mailNotify MailNotify) SendResponseTimeNotification(responseTimeNotificati
 
 		message := getMessageFromResponseTimeNotification(responseTimeNotification)
 
+		mail_message := fmt.Sprintf("From: %v\nTo: %v\nSubject: %v\n\n%v", mailNotify.From, mailNotify.To, mailNotify.Subject, message)
+
 		// Connect to the server, authenticate, set the sender and recipient,
 		// and send the email all in one step.
 		err := smtp.SendMail(
@@ -80,7 +83,7 @@ func (mailNotify MailNotify) SendResponseTimeNotification(responseTimeNotificati
 			auth,
 			mailNotify.From,
 			[]string{mailNotify.To},
-			bytes.NewBufferString(message).Bytes(),
+			bytes.NewBufferString(mail_message).Bytes(),
 		)
 
 		if err != nil {
