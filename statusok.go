@@ -49,7 +49,7 @@ func main() {
 		},
 	}
 
-	app.Action = func(c *cli.Context) {
+	app.Action = func(c *cli.Context) error {
 
 		if fileExists(c.String("config")) {
 
