@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/codegangsta/cli"
+	"github.com/urfave/cli"
 	"github.com/1024kilobyte/statusok/database"
 	"github.com/1024kilobyte/statusok/notify"
 	"github.com/1024kilobyte/statusok/requests"
