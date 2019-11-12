@@ -2,6 +2,7 @@ package notify
 
 //Inspired from https://github.com/zbindenren/logrus_mail
 import (
+	"fmt"
 	"bytes"
 	"net"
 	"net/mail"
