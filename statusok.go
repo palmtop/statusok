@@ -36,7 +36,7 @@ func main() {
 	app.Name = "StatusOk"
 	app.Usage = "Monitor your website.Get notifications when its down"
 
-	app.Flags = []cli.Flag{
+	app.Flags = []cli.Flag {
 		cli.StringFlag{
 			Name:  "config",
 			Value: "config.json",
@@ -70,6 +70,7 @@ func main() {
 			println("Config file not present at the given location: ", c.String("config"), "\nPlease give correct file location using --config parameter")
 		}
 
+		return nil
 	}
 
 	//Run as cli app
