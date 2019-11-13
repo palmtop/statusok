@@ -1,3 +1,10 @@
+---
+**NOTE**
+
+This is a fork from sanathp/statusok, so all credit belongs there. I just added some minor email notification features and updated dependencies to build again.
+
+---
+
 # StatusOK
 
 Monitor your Website and APIs from your computer.Get notified through Slack or E-mail when your server is down or response time is more than expected.
