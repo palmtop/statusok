@@ -7,7 +7,7 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/sirupsen/logrus"
+	"github.com/Xirupsen/logrus"
 	"github.com/1024kilobyte/statusok/notify"
 )
 
