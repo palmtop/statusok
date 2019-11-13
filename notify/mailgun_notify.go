@@ -1,8 +1,6 @@
 package notify
 
 import (
-	"context"
-	"time"
 	"errors"
 	"fmt"
 	"github.com/mailgun/mailgun-go"
