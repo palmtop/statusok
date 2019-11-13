@@ -1,9 +1,9 @@
----
-**NOTE**
+```
+NOTE:
 
 This is a fork from sanathp/statusok, so all credit belongs there. I just added some minor email notification features and updated dependencies to build again.
 
----
+```
 
 # StatusOK
 
