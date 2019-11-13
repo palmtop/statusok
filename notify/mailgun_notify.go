@@ -46,10 +46,7 @@ func (mailgunNotify MailgunNotify) SendResponseTimeNotification(responseTimeNoti
 
 	mail := mailGunClient.NewMessage("StatusOkNotifier <notify@StatusOk.com>", subject, message, fmt.Sprintf("<%s>", mailgunNotify.Email))
 
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
-    defer cancel()
-
-	_, _, mailgunErr := mailGunClient.Send(ctx, mail)
+	_, _, mailgunErr := mailGunClient.Send(mail)
 
 	if mailgunErr != nil {
 		return mailgunErr
@@ -65,10 +62,7 @@ func (mailgunNotify MailgunNotify) SendErrorNotification(errorNotification Error
 
 	mail := mailGunClient.NewMessage("StatusOkNotifier <notify@StatusOk.com>", subject, message, fmt.Sprintf("<%s>", mailgunNotify.Email))
 	
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
-    defer cancel()
-	
-	_, _, mailgunErr := mailGunClient.Send(ctx, mail)
+	_, _, mailgunErr := mailGunClient.Send(mail)
 
 	if mailgunErr != nil {
 		return mailgunErr
