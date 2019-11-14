@@ -117,6 +117,8 @@ func (mailNotify MailNotify) SendErrorNotification(errorNotification ErrorNotifi
 
 		message := getMessageFromErrorNotification(errorNotification)
 
+		mail_message := fmt.Sprintf("From: %v\nTo: %v\nSubject: %v\n\n%v", mailNotify.From, mailNotify.To, mailNotify.Subject, message)
+
 		// Connect to the server, authenticate, set the sender and recipient,
 		// and send the email all in one step.
 		err := smtp.SendMail(
@@ -124,7 +126,7 @@ func (mailNotify MailNotify) SendErrorNotification(errorNotification ErrorNotifi
 			auth,
 			mailNotify.From,
 			[]string{mailNotify.To},
-			bytes.NewBufferString(message).Bytes(),
+			bytes.NewBufferString(mail_message).Bytes(),
 		)
 		if err != nil {
 			return err
