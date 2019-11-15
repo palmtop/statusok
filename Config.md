@@ -145,8 +145,11 @@ To recieve notifications to your email using smtp server,add below block to your
 	"port":port-no,
 	"username":"your mail username",
 	"password":"your mail passwrd",
+	"senderName":"the sender name showed in email clients",
 	"from":"from email id",
-	"to":"to email id"
+	"receiverName":"the receiver name showed in email clients",
+	"to":"to email id",
+	"subject":"your mail subject"
 }
 
 ```

@@ -21,8 +21,11 @@
 		"port":587,
 		"username":"statusok@gmail.com",
 		"password":"password",
+		"senderName": "StatusOK",
 		"from":"statusok@gmail.com",
-		"to":"notify@gmail.com"
+		"receiverName": "Notify",
+		"to":"notify@gmail.com",
+		"subject": "monitoring alert"
 	},
 	"slack":{
 		"channel":"#general",

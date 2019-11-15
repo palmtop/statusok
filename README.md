@@ -1,13 +1,12 @@
-```
-NOTE:
-
-This is a fork from sanathp/statusok, so all credit belongs there. I just added some minor email notification features and updated dependencies to build again.
-
-```
+> NOTE:
+> 
+> This is a fork from [sanathp/statusok](https://github.com/sanathp/statusok), so all credit belongs there. If you have a moment please leave a star.  
+> 
+> The purpose of this fork is to update the source to compile again and add some minor features as needed.
 
 # StatusOK
 
-Monitor your Website and APIs from your computer.Get notified through Slack or E-mail when your server is down or response time is more than expected.
+Monitor your Website and APIs from your computer. Get notified through Slack or E-mail when your server is down or response time is more than expected.
 
 
 ## Simple Version
@@ -23,8 +22,11 @@ Step 1: Write a config.json with the url information
 			"port":587,
 			"username":"yourmailid@gmail.com",
 			"password":"your gmail password",
+			"senderName":"the sender name showed in email clients",
 			"from":"yourmailid@gmail.com",
-			"to":"destemailid@gmail.com"
+			"receiverName":"the receiver name showed in email clients",
+			"to":"destemailid@gmail.com",
+			"subject":"your mail subject"
 		}
 	},
 	"requests":[
