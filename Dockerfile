@@ -1,17 +1,18 @@
-FROM golang:1.6.3
+FROM golang:1.13.4 AS builder
 
-ENV STATUSOK_VERSION 0.1.1
+WORKDIR /go/src/github.com/1024kilobyte/statusok/
+COPY statusok.go ./
+COPY database ./database/
+COPY go.mod ./
+COPY notify ./notify/
+COPY requests ./requests/
+RUN env GO111MODULE=on go get
+RUN env CGO_ENABLED=0 GOOS=linux go build 
 
-RUN apt-get update \
-    && apt-get install -y unzip \
-    && wget https://github.com/sanathp/statusok/releases/download/$STATUSOK_VERSION/statusok_linux.zip \
-    && unzip statusok_linux.zip \
-    && mv ./statusok_linux/statusok /go/bin/StatusOk \
-    && rm -rf ./statusok_linux* \
-    && apt-get remove -y unzip git \
-    && apt-get autoremove -y \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+FROM alpine:latest  
+RUN apk --no-cache add ca-certificates
+WORKDIR /root/
+COPY --from=builder /go/src/github.com/1024kilobyte/statusok/statusok ./
 
 VOLUME /config
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
