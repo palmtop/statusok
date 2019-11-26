@@ -156,19 +156,19 @@ func (mailNotify MailNotify) getMailMessageFromMessage(message string) string {
 	mail_to_header := ""
 	mail_subject_header := ""
 
-	if mailNotify.SenderName != nil || len(mailNotify.SenderName) > 0 {
+	if len(mailNotify.SenderName) > 0 {
 		mail_from_header := fmt.Sprintf("From: %v <%v>\n", mailNotify.SenderName, mailNotify.From)
 	} else {
 		mail_from_header := fmt.Sprintf("From: %v\n", mailNotify.From)
 	}
 
-	if mailNotify.ReceiverName != nil || len(mailNotify.ReceiverName) > 0 {
+	if len(mailNotify.ReceiverName) > 0 {
 		mail_to_header := fmt.Sprintf("To: %v <%v>\n", mailNotify.ReceiverName, mailNotify.To)	
 	} else {
 		mail_to_header := fmt.Sprintf("To: %v\n", mailNotify.To)
 	}
 	
-	if mailNotify.Subject != nil || len(mailNotify.Subject) > 0 {
+	if len(mailNotify.Subject) > 0 {
 		mail_subject_header := fmt.Sprintf("Subject: %v\n", mailNotify.Subject)
 	}
 

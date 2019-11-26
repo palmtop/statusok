@@ -8,12 +8,11 @@ services:
     depends_on:
       - influxdb
   influxdb:
-    image: tutum/influxdb:0.9
+    image: influxdb
     restart: always
     environment:
       - PRE_CREATE_DB="statusok" 
     ports:
-      - 8083:8083 
       - 8086:8086
   grafana:
     image: grafana/grafana
