@@ -1,0 +1,8 @@
+datasources:
+-  access: proxy
+   editable: false
+   is_default: true
+   name: statusok
+   type: influxdb
+   url: http://influxdb:8086
+   database: statusok

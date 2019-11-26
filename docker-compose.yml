@@ -1,0 +1,24 @@
+version: '3'
+services:
+  statusok:
+    build: .
+    restart: always
+    volumes:
+      - .:/config
+    depends_on:
+      - influxdb
+  influxdb:
+    image: tutum/influxdb:0.9
+    restart: always
+    environment:
+      - PRE_CREATE_DB="statusok" 
+    ports:
+      - 8083:8083 
+      - 8086:8086
+  grafana:
+    image: grafana/grafana
+    restart: always
+    volumes:
+    - ./grafana/provisioning/:/etc/grafana/provisioning/
+    ports:
+      - 3000:3000

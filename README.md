@@ -142,41 +142,21 @@ Adding support to other clients is simple.[view details](https://github.com/sana
 ## Running with plain Docker
 
 ```
-docker run -d -v /path/to/config/folder:/config sanathp/statusok
+docker image build -t statusokay .
+
+docker container run -v /Users/1024kilobyte/go/src/statusok:/config statusokay
 ```
 
 *Note*: Config folder should contain config file with name `config.json`
 
 ## Running with Docker Compose
 
-Prepare docker-compose.yml config like this:
-
-```
-version: '2'
-services:
-  statusok:
-    build: sanathp/statusok
-    volumes:
-      - /path/to/config/folder:/config
-    depends_on:
-      - influxdb
-  influxdb:
-    image: tutum/influxdb:0.9
-    environment:
-      - PRE_CREATE_DB="statusok" 
-    ports:
-      - 8083:8083 
-      - 8086:8086
-  grafana:
-    image: grafana/grafana
-    ports:
-      - 3000:3000
-```
+An example compose file is in the root directory of the project. The file builds the statusok project from the local Dockerfile and also creates and starts an influxdb and grafana instance. You just have to set the config fiel path in the statusok volumes section.
 
 Now run it:
 
 ```
-docker-compose up
+docker-compose up -d
 ```
 
 ## Contribution
