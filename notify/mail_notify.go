@@ -76,7 +76,7 @@ func (mailNotify MailNotify) SendResponseTimeNotification(responseTimeNotificati
 		auth := smtp.PlainAuth("", mailNotify.Username, mailNotify.Password, mailNotify.Host)
 
 		message := getMessageFromResponseTimeNotification(responseTimeNotification)
-		mail_message := getMailMessageFromMessage(message)
+		mail_message := getMailMessageFromMessage(message, mailNotify)
 
 		// Connect to the server, authenticate, set the sender and recipient,
 		// and send the email all in one step.
@@ -117,7 +117,7 @@ func (mailNotify MailNotify) SendErrorNotification(errorNotification ErrorNotifi
 		auth := smtp.PlainAuth("", mailNotify.Username, mailNotify.Password, mailNotify.Host)
 
 		message := getMessageFromErrorNotification(errorNotification)
-		mail_message := getMailMessageFromMessage(message)
+		mail_message := getMailMessageFromMessage(message, mailNotify)
 
 		// Connect to the server, authenticate, set the sender and recipient,
 		// and send the email all in one step.
@@ -151,25 +151,25 @@ func (mailNotify MailNotify) SendErrorNotification(errorNotification ErrorNotifi
 	}
 }
 
-func (mailNotify MailNotify) getMailMessageFromMessage(message string) string {
+func getMailMessageFromMessage(message string, mailNotify MailNotify) string {
 	mail_from_header := ""
 	mail_to_header := ""
 	mail_subject_header := ""
 
 	if len(mailNotify.SenderName) > 0 {
-		mail_from_header := fmt.Sprintf("From: %v <%v>\n", mailNotify.SenderName, mailNotify.From)
+		mail_from_header = fmt.Sprintf("From: %v <%v>\n", mailNotify.SenderName, mailNotify.From)
 	} else {
-		mail_from_header := fmt.Sprintf("From: %v\n", mailNotify.From)
+		mail_from_header = fmt.Sprintf("From: %v\n", mailNotify.From)
 	}
 
 	if len(mailNotify.ReceiverName) > 0 {
-		mail_to_header := fmt.Sprintf("To: %v <%v>\n", mailNotify.ReceiverName, mailNotify.To)	
+		mail_to_header = fmt.Sprintf("To: %v <%v>\n", mailNotify.ReceiverName, mailNotify.To)	
 	} else {
-		mail_to_header := fmt.Sprintf("To: %v\n", mailNotify.To)
+		mail_to_header = fmt.Sprintf("To: %v\n", mailNotify.To)
 	}
 	
 	if len(mailNotify.Subject) > 0 {
-		mail_subject_header := fmt.Sprintf("Subject: %v\n", mailNotify.Subject)
+		mail_subject_header = fmt.Sprintf("Subject: %v\n", mailNotify.Subject)
 	}
 
 	mail_content := fmt.Sprintf("%v%v%v\n%v", mail_from_header, mail_to_header, mail_subject_header, message)
