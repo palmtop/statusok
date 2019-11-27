@@ -38,6 +38,7 @@ Config file should be in JSON format (Support for other formats will be added in
 "notifyWhen":{
 	"meanResponseCount":10 //A notification will be triggered if mean response time of last 10 requests is less than given response time. Default value is 5
 },
+"skipStartupNotifications": false, // Wether to send a test notification to all configured notification targets at startup. If you use docker with auto restart this lets you know when the container restarted.
 "port":3215 //By default the server runs on port 7321.You can define your custom port number as below
 "concurrency":2 //Max Number of requests that can be performed concurrently.Default value is 1.
 

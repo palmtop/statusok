@@ -1,4 +1,5 @@
 {
+"skipStartupNotifications": false,
 "notifications":{
 	"slack":{
 		"channel":"#chanelName",

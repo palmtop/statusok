@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/urfave/cli"
-	"github.com/1024kilobyte/statusok/database"
-	"github.com/1024kilobyte/statusok/notify"
-	"github.com/1024kilobyte/statusok/requests"
+	"statusok/database"
+	"statusok/notify"
+	"statusok/requests"
 	"io"
 	"math/rand"
 	"net/http"
@@ -16,12 +16,13 @@ import (
 )
 
 type configParser struct {
-	NotifyWhen    NotifyWhen               `json:"notifyWhen"`
-	Requests      []requests.RequestConfig `json:"requests"`
-	Notifications notify.NotificationTypes `json:"notifications"`
-	Database      database.DatabaseTypes   `json:"database"`
-	Concurrency   int                      `json:"concurrency"`
-	Port          int                      `json:"port"`
+	SkipStartupNotifications	bool						`json:"skipStartupNotifications"`
+	NotifyWhen					NotifyWhen					`json:"notifyWhen"`
+	Requests					[]requests.RequestConfig	`json:"requests"`
+	Notifications 				notify.NotificationTypes	`json:"notifications"`
+	Database					database.DatabaseTypes		`json:"database"`
+	Concurrency					int							`json:"concurrency"`
+	Port						int							`json:"port"`
 }
 
 type NotifyWhen struct {
@@ -96,7 +97,11 @@ func startMonitoring(configFileName string, logFileName string) {
 	//setup different notification clients
 	notify.AddNew(config.Notifications)
 	//Send test notifications to all the notification clients
-	notify.SendTestNotification()
+	if (!config.SkipStartupNotifications) {
+		notify.SendTestNotification()
+	} else {
+		fmt.Println("Skipping sending startup notifications...")
+	}
 
 	//Create unique ids for each request date given in config file
 	reqs, ids := validateAndCreateIdsForRequests(config.Requests)

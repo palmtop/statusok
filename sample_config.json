@@ -1,4 +1,5 @@
 {
+"skipStartupNotifications": false,
 "database":{
 	"influxDb":{
 		"host":"localhost",
