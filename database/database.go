@@ -8,7 +8,7 @@ import (
 	"strings"
 
 	"github.com/sirupsen/logrus"
-	"github.com/1024kilobyte/statusok/notify"
+	"statusok/notify"
 )
 
 var (
