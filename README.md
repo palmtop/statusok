@@ -41,11 +41,17 @@ Step 1: Write a config.json with the url information
 ```
 Turn on access for your gmail https://www.google.com/settings/security/lesssecureapps .
 
-Step 2: Download bin file from [here](https://github.com/sanathp/statusok/releases/) and run the below command from your terminal
+Step 2: build the project using the following command (go needs to be installed on your system, see instructions [here](https://golang.org/doc/install#install))
+```
+$ go build
+```
+
+Step 3: run statusok
 ```
 $ ./statusok --config config.json
 ```
-Thats it !!!! You will receive a mail when your website is down or response time is more.
+
+Step 4: there is no step 4, you will receive a mail when your website is down or response time is too high.
 
 To run as background process add & at the end
 
@@ -60,7 +66,7 @@ $ kill %jobnumber
 
 ## Complete Version using InfluxDb
 
-![alt text](https://github.com/sanathp/StatusOK/raw/master/screenshots/graphana.png "Graphana Screenshot")
+![alt text](https://github.com/1024kilobyte/StatusOK/raw/master/screenshots/graphana.png "Graphana Screenshot")
 
 You can save data to influx db and view response times over a period of time as above using graphana.
 
@@ -111,9 +117,9 @@ With StatusOk you can monitor all your REST APIs by adding api details to config
 }
 
 ```
-[Guide to write config.json file](https://github.com/sanathp/statusok/blob/master/Config.md#writing-a-config-file)
+[Guide to write config.json file](https://github.com/1024kilobyte/StatusOK/blob/master/Config.md#writing-a-config-file)
 
-[Sample config.json file](https://github.com/sanathp/StatusOK/blob/master/sample_config.json)
+[Sample config.json file](https://github.com/1024kilobyte/StatusOK/blob/master/sample_config.json)
 
 To run the app
 
@@ -151,7 +157,7 @@ docker container run -v /Users/1024kilobyte/go/src/statusok:/config statusokay
 
 ## Running with Docker Compose
 
-An example compose file is in the root directory of the project. The file builds the statusok project from the local Dockerfile and also creates and starts an influxdb and grafana instance. You just have to set the config fiel path in the statusok volumes section.
+An example compose file is in the root directory of the project. The file builds the statusok project from the local Dockerfile and also creates and starts an influxdb and grafana instance. You just have to set the config filepath in the statusok volumes section.
 
 Now run it:
 
