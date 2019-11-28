@@ -48,7 +48,7 @@ $ go build
 
 Step 3: run statusok
 ```
-$ ./statusok --config config.json
+$ ./statusok --config ./config/statusok/config.json
 ```
 
 Step 4: there is no step 4, you will receive a mail when your website is down or response time is too high.
@@ -56,7 +56,7 @@ Step 4: there is no step 4, you will receive a mail when your website is down or
 To run as background process add & at the end
 
 ```
-$ ./statusok --config config.json &	
+$ ./statusok --config ./config/statusok/config.json &	
 ```
 to stop the process 
 ```
@@ -119,12 +119,12 @@ With StatusOk you can monitor all your REST APIs by adding api details to config
 ```
 [Guide to write config.json file](https://github.com/1024kilobyte/StatusOK/blob/master/Config.md#writing-a-config-file)
 
-[Sample config.json file](https://github.com/1024kilobyte/StatusOK/blob/master/sample_config.json)
+[Sample config.json file](https://github.com/1024kilobyte/StatusOK/blob/master/config/statusok/sample_config.json)
 
 To run the app
 
 ```
-$ ./statusok --config config.json &
+$ ./statusok --config ./config/statusok/config.json &
 ```
 
 ## Database
@@ -148,22 +148,24 @@ Adding support to other clients is simple.[view details](https://github.com/sana
 ## Running with plain Docker
 
 ```
-docker image build -t statusokay .
+docker image build -t statusok .
 
-docker container run -v /Users/1024kilobyte/go/src/statusok:/config statusokay
+docker container run -v ./config/statusok/config.json:/config statusok
 ```
 
-*Note*: Config folder should contain config file with name `config.json`
+*Note*: config/statusok folder should contain config file with name `config.json`
 
 ## Running with Docker Compose
 
-An example compose file is in the root directory of the project. The file builds the statusok project from the local Dockerfile and also creates and starts an influxdb and grafana instance. You just have to set the config filepath in the statusok volumes section.
+An predefined compose file is in the root directory of the project. The file builds the statusok project from the local Dockerfile and also creates and starts an influxdb and grafana instance.
 
 Now run it:
 
 ```
 docker-compose up -d
 ```
+
+You can now login to grafana and configure dashboards (url: [http://localhost:3000](http://localhost:3000), default username "admin", default password "admmin").
 
 ## Contribution
 

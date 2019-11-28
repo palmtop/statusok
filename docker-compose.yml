@@ -4,7 +4,7 @@ services:
     build: .
     restart: always
     volumes:
-      - .:/config
+      - ./config/statusok:/config
     depends_on:
       - influxdb
   influxdb:
@@ -18,6 +18,6 @@ services:
     image: grafana/grafana
     restart: always
     volumes:
-    - ./grafana/provisioning/:/etc/grafana/provisioning/
+    - ./config/grafana/provisioning/:/etc/grafana/provisioning/
     ports:
       - 3000:3000
