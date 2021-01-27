@@ -1,3 +1,6 @@
 .DS_Store
 /statusok
 /config/statusok/config.json
+/config.json
+/.vscode
+/go.sum
